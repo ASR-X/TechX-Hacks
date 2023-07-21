@@ -1,6 +1,6 @@
 import openai
 
-openai.api_key = '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'
+openai.api_key = 'REDACTED'
 
 def get_gpt_output(gpt_prompt):
   message=[{'role': 'user', 'content': gpt_prompt}]
