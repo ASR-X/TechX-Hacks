@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        .PlotButton {
+            background-color: white;
+            border: 2px solid black;
+            color: black;
+            padding: 200px 600px;
+            text-align: center;
+            display: inline-block;
+            font-size: 50px;
+            margin: 75px 250px;
+            cursor: pointer;
+            font-family: Arial;
+        }
+        h1{
+            text-align: center;
+            font-family: Arial;
+        }
+        .TextBox{
+            text-align: left;
+            margin: 20px 120px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Adding link to the button on the onclick event -->
+<div style="width: 100%">
+    <div align="center">
+    <button class="PlotButton"
+    onclick="window.location.href = 'http://127.0.0.1:5000/';">
+        {% for data in data %}
+        {{ data }}'s Plot
+        {% endfor %}
+    </button>
+    </div>
+</div>
+
+<div style="margin: 20px 120px">
+<select id="myselect" onchange="change_myselect(this.value)", style="height: 50px; width: 200px; text-align: center; font-size: 16px">
+  <option value="">Choose an option:</option>
+  <option value="tomatoes">Tomatoes</option>
+  <option value="cucumbers">Cucumbers</option>
+  <option value="corn">Corn</option>
+    <option value="potatoes">Potatoes</option>
+  <option value="lettuce">Lettuce</option>
+  <option value="radish">Radish</option>
+</select>
+</div>
+    <p id="demo", class="TextBox"></p>
+
+    <p class="TextBox"> To-Do List</p>
+    <ul contentEditable="true", style="font-size: 20px; margin: 20px 120px">
+        <li> 1:  </li>
+        <li> 2:  </li>
+        <li> 3:  </li>
+    </ul>
+
+
+<script>
+function change_myselect(sel) {
+  const param = sel
+  fetch('http://127.0.0.1:8000/gpt?crop=' + param)
+      .then(response => response.json())
+      .then(data => document.getElementById('demo').textContent = JSON.parse(JSON.stringify(data)).instructions)
+}
+</script>
+
+</body>
+</html>
