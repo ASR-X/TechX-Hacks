@@ -4,7 +4,7 @@ import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
 
 app_api = FastAPI()
-openai.api_key = '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'
+openai.api_key = 'REDACTED'
 
 app_api.add_middleware(
     CORSMiddleware,
